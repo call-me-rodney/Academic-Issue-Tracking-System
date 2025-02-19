@@ -1,26 +1,49 @@
 from django.db import models
 
 # Create your models here.
-class students(models.Model):
-    username = models.CharField(max_length=100)
-    stud_no = models.IntegerField()
-    email = models.CharField(max_length=100)
+class roles(models.Model):
+    role = models.CharField(max_length=100)
+    roleID = models.IntegerField(primary_key=True)
+    description = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.username
+        return self.role
     
-class lecturer(models.Model):
-    username = models.CharField(max_length=100)
-    lect_no = models.IntegerField()
+class users(models.Model):
+    userID = models.IntegerField(primary_key=True)
+    roleID = models.ForeignKey(roles, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.username
+        return self.name
     
-class admins(models.Model):
-    username = models.CharField(max_length=100)
-    admin_no = models.IntegerField()
-    email = models.CharField(max_length=100)
+class issues(models.Model):
+    STATUS = {
+        ('Pending', 'Pending'),
+        ('In Progress', 'In Progress'),
+        ('Resolved', 'Resolved')
+    }
+
+    issueID = models.IntegerField(primary_key=True)
+    userID = models.ForeignKey(users, on_delete=models.CASCADE)
+    issue = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, choices=STATUS)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    assigned_to = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.username
+        return self.issue
+    
+class notifications(models.Model):
+    notificationID = models.IntegerField(primary_key=True)
+    userID = models.ForeignKey(users, on_delete=models.CASCADE)
+    issueID = models.ForeignKey(issues, on_delete=models.CASCADE)
+    message = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.message
