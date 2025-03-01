@@ -5,9 +5,9 @@ from .models import *
 from .serializer import *
 
 # Create your views here.
-class aitsHome(APIView):
+class Home(APIView):
     def get(self, request):
-        output = '__all__'
+        output = [{"category":output.category,"description":output.description,"status":output.status,"created_at":output.created_at,"updated_at":output.updated_at,"assigned_to":output.assigned_to} for output in issues.objects.all()]
         return Response(output)
     
     def post(self,request):
@@ -16,7 +16,7 @@ class aitsHome(APIView):
             serializer.save()
             return Response(serializer.data)
         
-class aitslogin(APIView):
+class login(APIView):
     def post(self,request):
         serializer = userSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):

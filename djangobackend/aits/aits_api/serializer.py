@@ -4,19 +4,19 @@ from .models import *
 class userSerializer(serializers.ModelSerializer):
     class Meta:
         model = users
-        fields = '__all__'
+        fields = ["userID","roleID","name","email","password"]
 
 class roleSerializer(serializers.ModelSerializer):
     class Meta:
         model = roles
-        fields = '__all__'
+        fields = ["role","roleID","descrition"]
 
 class issueSerializer(serializers.ModelSerializer):
     class Meta:
         model = issues
-        fields = '__all__'
+        fields = ["issueID","userID","issue","category","description","status","created_at","updated_at","assigned_to"]
 
 class notificationSerializer(serializers.ModelSerializer):
     class Meta:
         model  = notifications
-        fields = '__all__'
+        fields = ["notificationID","userID","issueID","message"]

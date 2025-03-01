@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'aits.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'issues',
-        'USER': 'rodney',
+        'NAME': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
-        'PORT': '5000'
+        'PORT': '5432',
     }
 }
 
