@@ -20,3 +20,8 @@ class notificationSerializer(serializers.ModelSerializer):
     class Meta:
         model  = notifications
         fields = ["notificationID","userID","issueID","message"]
+
+class deptSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = departments
+        fields = ["deptID","deptName","college","description"]

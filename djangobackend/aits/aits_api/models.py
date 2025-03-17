@@ -5,7 +5,8 @@ class roles(models.Model):
     ROLES = {
         "S": "Student",
         "L": "Lecturer",
-        "A": "Administrator"
+        "A": "Admin",
+        "R": "Registrar",
     }
 
     role = models.CharField(max_length=1,choices=ROLES)
@@ -14,11 +15,25 @@ class roles(models.Model):
 
     def __str__(self):
         return self.role
+
+class departments(models.Model):
+    COLLEGE = {
+        'COCIS':'College of Computing and Information Sciences',
+        'CEDAT':'College of Engineering, Design, Art and Technology',
+    }
+    deptID = models.IntegerField(primary_key=True)
+    deptName = models.CharField(max_length=100)
+    college = models.CharField(max_length=10,choices=COLLEGE)
+    description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.deptName 
     
 class users(models.Model):
     userID = models.IntegerField(primary_key=True)
     roleID = models.ForeignKey(roles, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    firstName = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
 
@@ -27,8 +42,9 @@ class users(models.Model):
     
 class issues(models.Model):
     STATUS = {
+        'CREATED':'CREATED',
+        'PENDING':'PENDING',
         'OPEN':'OPEN',
-        'In Progress':'In Progress',
         'RESOLVED':'RESOLVED',
         'CLOSED':'CLOSED',
     }
@@ -41,6 +57,7 @@ class issues(models.Model):
 
     issueID = models.IntegerField(primary_key=True)
     userID = models.ForeignKey(users, on_delete=models.CASCADE)
+    deptID = models.ForeignKey(departments, on_delete=models.CASCADE)
     category = models.CharField(max_length=2,choices=CATEGORY)
     description = models.CharField(max_length=255)
     status = models.CharField(max_length=20, choices=STATUS)
@@ -52,10 +69,16 @@ class issues(models.Model):
         return self.issue
     
 class notifications(models.Model):
-    notificationID = models.IntegerField(primary_key=True)
+    STATE = {
+        'READ':'READ',
+        'UNREAD':'UNREAD',
+    }
+    notID = models.IntegerField(primary_key=True)
     userID = models.ForeignKey(users, on_delete=models.CASCADE)
     issueID = models.ForeignKey(issues, on_delete=models.CASCADE)
     message = models.CharField(max_length=255)
+    state = models.CharField(max_length=10,choices=STATE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.message
