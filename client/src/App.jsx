@@ -1,5 +1,5 @@
 import React from 'react'
-import Login from './Pages/Login';
+import Login from './Utils/Login';
 
 const App = () => {
   return (
