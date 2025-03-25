@@ -46,7 +46,12 @@ class User(AbstractUser, PermissionsMixin):
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'unique_number']
- 
+
+    objects = CustomUserManager()
+    
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}" 
+
 # Create your models here.
 class roles(models.Model):
     ROLES = {
