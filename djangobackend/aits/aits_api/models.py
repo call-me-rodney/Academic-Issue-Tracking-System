@@ -1,6 +1,6 @@
 from django.db import models
 from simple_history.models import HistoricalRecords
-from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.utils.translation import gettext_lazy as _
 
 
@@ -36,6 +36,17 @@ class User(AbstractUser, PermissionsMixin):
         ('R', 'Registrar'),
     ]
     
+    groups = models.ManyToManyField(
+        Group,
+        related_name="aits_api_user_groups",  # Custom related_name
+        blank=True
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name="aits_api_user_permissions",  # Custom related_name
+        blank=True
+    )
+
     username = None
     email = models.EmailField(_('email address'), unique=True)
     unique_number = models.CharField(max_length=20, unique=True)
