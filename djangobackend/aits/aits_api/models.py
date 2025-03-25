@@ -118,7 +118,7 @@ class issues(models.Model):
     assigned_to = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.issue
+        return f"Issue #{self.issueID}: {self.get_category_display()}"
     
 class notifications(models.Model):
     STATE = {
