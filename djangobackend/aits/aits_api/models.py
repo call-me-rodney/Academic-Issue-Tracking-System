@@ -26,7 +26,27 @@ class CustomUserManager(BaseUserManager):
         
         return self.create_user(email, password, **extra_fields)
 
-
+# Custom User Model
+class User(AbstractUser, PermissionsMixin):
+    ROLE_CHOICES = [
+        ('S', 'Student'),
+        ('L', 'Lecturer'),
+        ('A', 'Admin'),
+        ('R', 'Registrar'),
+    ]
+    
+    username = None
+    email = models.EmailField(_('email address'), unique=True)
+    unique_number = models.CharField(max_length=20, unique=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    role = models.CharField(max_length=1, choices=ROLE_CHOICES, default='S')
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'unique_number']
+ 
 # Create your models here.
 class roles(models.Model):
     ROLES = {
