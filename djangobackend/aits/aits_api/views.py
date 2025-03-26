@@ -102,3 +102,22 @@ class IssueListView(APIView):
             
         serializer = IssueSerializer(issues, many=True)
         return Response(serializer.data)
+    
+    def post(self, request):
+        # Add the current user as the issue creator
+        request.data['user'] = request.user.id
+        serializer = IssueSerializer(data=request.data)
+        if serializer.is_valid():
+            issue = serializer.save()
+            
+            # Create notification for registrar
+            registrars = User.objects.filter(role='R')
+            for registrar in registrars:
+                Notification.objects.create(
+                    user=registrar,
+                    issue=issue,
+                    message=f"New issue created: {issue.get_category_display()} by {request.user.first_name} {request.user.last_name}"
+                )
+                
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
