@@ -11,4 +11,8 @@ urlpatterns = [
     # User endpoints
     path('users/', UserListView.as_view(), name='user-list'),
     path('users/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+
+    # Issue endpoints
+    path('issues/', IssueListView.as_view(), name='issue-list'),
+    path('issues/<int:pk>/', IssueDetailView.as_view(), name='issue-detail'),
 ]
