@@ -56,3 +56,17 @@ class UserListView(APIView):
             serializer = UserSerializer(users, many=True)
             return Response(serializer.data)
         return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+    
+class UserDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+            # Only allow users to view their own profile or admins/registrars to view any profile
+            if request.user.id == user.id or request.user.role in ['A', 'R']:
+                serializer = UserSerializer(user)
+                return Response(serializer.data)
+            return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
