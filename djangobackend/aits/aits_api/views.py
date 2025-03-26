@@ -206,4 +206,23 @@ class NotificationDetailView(APIView):
         except Notification.DoesNotExist:
             return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
 
+# Home view for basic API information
+class Home(APIView):
+    permission_classes = [AllowAny]
+    
+    def get(self, request):
+        return Response({
+            "message": "Welcome to the Academic Issue Tracking System API",
+            "endpoints": {
+                "auth": {
+                    "register": "/api/register/",
+                    "login": "/api/login/"
+                },
+                "users": "/api/users/",
+                "issues": "/api/issues/",
+                "departments": "/api/departments/",
+                "notifications": "/api/notifications/"
+            }
+        })
+
 
