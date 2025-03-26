@@ -70,3 +70,17 @@ class UserDetailView(APIView):
             return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
         except User.DoesNotExist:
             return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    def put(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+            # Only allow users to update their own profile or admins to update any profile
+            if request.user.id == user.id or request.user.role == 'A':
+                serializer = UserUpdateSerializer(user, data=request.data, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
