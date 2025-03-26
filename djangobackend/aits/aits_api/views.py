@@ -121,3 +121,19 @@ class IssueListView(APIView):
                 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class IssueDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, pk):
+        try:
+            issue = Issue.objects.get(pk=pk)
+            # Check if user has permission to view this issue
+            if (request.user.role in ['A', 'R'] or 
+                request.user == issue.user or 
+                request.user == issue.assigned_to):
+                serializer = IssueSerializer(issue)
+                return Response(serializer.data)
+            return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+        except Issue.DoesNotExist:
+            return Response({'error': 'Issue not found'}, status=status.HTTP_404_NOT_FOUND)
