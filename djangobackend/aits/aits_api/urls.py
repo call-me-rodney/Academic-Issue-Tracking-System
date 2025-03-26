@@ -15,4 +15,7 @@ urlpatterns = [
     # Issue endpoints
     path('issues/', IssueListView.as_view(), name='issue-list'),
     path('issues/<int:pk>/', IssueDetailView.as_view(), name='issue-detail'),
+
+    # Department endpoints
+    path('departments/', DepartmentListView.as_view(), name='department-list'),
 ]
