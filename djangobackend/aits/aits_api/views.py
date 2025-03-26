@@ -84,3 +84,21 @@ class UserDetailView(APIView):
             return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
         except User.DoesNotExist:
             return Response({'error': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+# Issue Views
+class IssueListView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        # Filter issues based on user role
+        if request.user.role == 'A':  # Admin sees all issues
+            issues = Issue.objects.all()
+        elif request.user.role == 'R':  # Registrar sees all issues
+            issues = Issue.objects.all()
+        elif request.user.role == 'L':  # Lecturer sees issues assigned to them
+            issues = Issue.objects.filter(assigned_to=request.user)
+        else:  # Students see only their own issues
+            issues = Issue.objects.filter(user=request.user)
+            
+        serializer = IssueSerializer(issues, many=True)
+        return Response(serializer.data)
