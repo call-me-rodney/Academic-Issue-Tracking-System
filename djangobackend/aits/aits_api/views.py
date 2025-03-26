@@ -159,4 +159,23 @@ class IssueDetailView(APIView):
             return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
         except Issue.DoesNotExist:
             return Response({'error': 'Issue not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+# Department Views
+class DepartmentListView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        departments = Department.objects.all()
+        serializer = DepartmentSerializer(departments, many=True)
+        return Response(serializer.data)
+    
+    def post(self, request):
+        # Only admin can create departments
+        if request.user.role == 'A':
+            serializer = DepartmentSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
 
