@@ -34,6 +34,11 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'role']
         
 class roleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,7 +53,9 @@ class issueSerializer(serializers.ModelSerializer):
 class notificationSerializer(serializers.ModelSerializer):
     class Meta:
         model  = notifications
-        fields = ["notificationID","userID","issueID","message"]
+        fields = ["notID","userID","issueID","message", "state", "created_at"]
+        read_only_fields = ['notID', 'created_at']
+
 
 class deptSerializer(serializers.ModelSerializer):
     class Meta:
