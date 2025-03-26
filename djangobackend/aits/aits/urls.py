@@ -21,6 +21,6 @@ from aits_api.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", Home.as_view(), name="homepage"),
-    path("login", login.as_view(), name="Sign In")
+    path("", Home.as_view(), name="home"),
+    path('api/', include('aits_api.urls')), 
 ]
