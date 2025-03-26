@@ -137,3 +137,26 @@ class IssueDetailView(APIView):
             return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
         except Issue.DoesNotExist:
             return Response({'error': 'Issue not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+    def put(self, request, pk):
+        try:
+            issue = Issue.objects.get(pk=pk)
+            # Check if user has permission to update this issue
+            if request.user.role in ['A', 'R'] or request.user == issue.assigned_to:
+                serializer = IssueSerializer(issue, data=request.data, partial=True)
+                if serializer.is_valid():
+                    updated_issue = serializer.save()
+                    
+                    # Create notification for the issue owner
+                    Notification.objects.create(
+                        user=issue.user,
+                        issue=issue,
+                        message=f"Your issue has been updated. Status: {updated_issue.get_status_display()}"
+                    )
+                    
+                    return Response(serializer.data)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+        except Issue.DoesNotExist:
+            return Response({'error': 'Issue not found'}, status=status.HTTP_404_NOT_FOUND)
+
