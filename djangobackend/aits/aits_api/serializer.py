@@ -22,7 +22,19 @@ class UserSerializer(serializers.ModelSerializer):
         if attrs['password'] != attrs.pop('password2'):
             raise serializers.ValidationError({"password": "Password fields didn't match."})
         return attrs
-    
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            email=validated_data['email'],
+            unique_number=validated_data['unique_number'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'],
+            role=validated_data['role']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+        
 class roleSerializer(serializers.ModelSerializer):
     class Meta:
         model = roles
