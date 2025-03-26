@@ -189,3 +189,21 @@ class NotificationListView(APIView):
         serializer = NotificationSerializer(notifications, many=True)
         return Response(serializer.data)
 
+class NotificationDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def put(self, request, pk):
+        try:
+            notification = Notification.objects.get(pk=pk)
+            # Users can only update their own notifications
+            if request.user == notification.user:
+                serializer = NotificationSerializer(notification, data=request.data, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data)
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+        except Notification.DoesNotExist:
+            return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
