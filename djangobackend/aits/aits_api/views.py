@@ -44,3 +44,15 @@ class LoginView(APIView):
                 'user': UserSerializer(user).data
             })
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+# User Management Views
+class UserListView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        # Only admin and registrar can view all users
+        if request.user.role in ['A', 'R']:
+            users = User.objects.all()
+            serializer = UserSerializer(users, many=True)
+            return Response(serializer.data)
+        return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
