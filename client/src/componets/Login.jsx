@@ -1,31 +1,49 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import SignUp from './Signup'
 
 const Login = () => {
   return (
     <div className="container">
-      
       <form action="#" className="form">
-      <h1>Sign in to your account</h1> 
+        <h1>Sign in to your account</h1> 
         <div className="space">
-        <label for="email">Your email</label>
-        <input className="input-box" required type="email" placeholder="Enter your email" name="email"/>
+          <label htmlFor="email">Your email</label>
+          <input
+            className="input-box"
+            required
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            id="email"
+          />
         </div>
         <div className="space">
-        <label for="password">Your password</label>
-        <input className="input-box" required type="password" placeholder="Enter your password" name="password"/>
+          <label htmlFor="password">Your password</label>
+          <input
+            className="input-box"
+            required
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+            id="password"
+          />
         </div>
-        <div  className="back">
+        <div className="back">
           <div>
-        <input type="checkbox"/>Remember me
+            <input type="checkbox" id="remember-me" />
+            <label htmlFor="remember-me">Remember me</label>
+          </div>
+          <NavLink className="account" to="/forgot-password">
+            Forgot password?
+          </NavLink>
         </div>
-        <a className="account" href="Forgot Password.jsx">Forgot password?</a>
+        <div className="submit"> 
+          <input type="submit" value="Sign in to account" />
         </div>
-        <div className="submit">
-        <input  type="submit" value="Sign in to account"/>
+        <div>
+          Not registered? <NavLink to="/signup">Create an account</NavLink>
         </div>
-        <div >
-        Not registered? <a className="account" href="SignUp.jsx">Create an account</a>
-      </div>
       </form>
     </div>
   )

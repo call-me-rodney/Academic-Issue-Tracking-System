@@ -4,9 +4,14 @@ import './index.css'
 import App from './App.jsx'
 import  './componets/Signup.css'
 import './componets/Login.css'
+import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <BrowserRouter>
+    <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
+  </BrowserRouter>
+
+
 )
