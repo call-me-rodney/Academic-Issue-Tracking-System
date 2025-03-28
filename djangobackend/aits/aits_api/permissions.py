@@ -6,3 +6,10 @@ class IsAdmin(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.role == 'A'
+
+class IsRegistrar(permissions.BasePermission):
+    """
+    Custom permission to only allow registrars to access the view.
+    """
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'R'
