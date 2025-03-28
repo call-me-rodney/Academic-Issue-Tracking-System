@@ -14,3 +14,8 @@ class RoleViewSet(viewsets.ModelViewSet):
     queryset = roles.objects.all()
     serializer_class = roleSerializer
     permission_classes = [IsAdmin]
+
+class DepartmentViewSet(viewsets.ModelViewSet):
+    queryset = departments.objects.all()
+    serializer_class = deptSerializer
+    permission_classes = [IsAdmin | IsRegistrar]
