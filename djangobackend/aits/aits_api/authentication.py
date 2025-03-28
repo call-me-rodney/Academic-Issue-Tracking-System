@@ -82,3 +82,12 @@ class IssueViewSet(viewsets.ModelViewSet):
         if self.action == 'create':
             return [permissions.IsAuthenticated(), IsStudent()]
         return [permissions.IsAuthenticated(), IsAdmin() | IsRegistrar() | IsLecturer()]
+    
+class NotificationViewSet(viewsets.ModelViewSet):
+    queryset = notifications.objects.all()
+    serializer_class = notificationSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        # Only show notifications for the current user
+        return notifications.objects.filter(userID=self.request.user)
