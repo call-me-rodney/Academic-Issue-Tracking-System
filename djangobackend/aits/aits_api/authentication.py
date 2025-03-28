@@ -19,3 +19,18 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = departments.objects.all()
     serializer_class = deptSerializer
     permission_classes = [IsAdmin | IsRegistrar]
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = users.objects.all()
+    
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return userCreateSerializer
+        return userSerializer
+    
+    def get_permissions(self):
+        if self.action in ['register', 'login']:
+            return [permissions.AllowAny()]
+        if self.action == 'me':
+            return [permissions.IsAuthenticated()]
+        return [permissions.IsAuthenticated(), IsAdmin() | IsRegistrar()]
