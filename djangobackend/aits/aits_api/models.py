@@ -97,18 +97,18 @@ class Issue(models.Model):
         return f"Issue #{self.issueID}: {self.get_category_display()}"
 
 # Notifications Model
-class Notification(models.Model):
-    STATE = {
-        'READ': 'READ',
-        'UNREAD': 'UNREAD',
-    }
+# class Notification(models.Model):
+#     STATE = {
+#         'READ': 'READ',
+#         'UNREAD': 'UNREAD',
+#     }
     
-    notID = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
-    issue = models.ForeignKey(Issue, on_delete=models.CASCADE, related_name='notifications')
-    message = models.CharField(max_length=255)
-    state = models.CharField(max_length=10, choices=STATE.items(), default='UNREAD')
-    created_at = models.DateTimeField(auto_now_add=True)
+#     notID = models.AutoField(primary_key=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+#     issue = models.ForeignKey(Issue, on_delete=models.CASCADE, related_name='notifications')
+#     message = models.CharField(max_length=255)
+#     state = models.CharField(max_length=10, choices=STATE.items(), default='UNREAD')
+#     created_at = models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
-        return self.message
+#     def __str__(self):
+#         return self.message
