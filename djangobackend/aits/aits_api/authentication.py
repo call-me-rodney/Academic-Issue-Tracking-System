@@ -10,3 +10,7 @@ from .serializer import (
 )
 from .permissions import IsAdmin, IsRegistrar, IsLecturer, IsStudent
 
+class RoleViewSet(viewsets.ModelViewSet):
+    queryset = roles.objects.all()
+    serializer_class = roleSerializer
+    permission_classes = [IsAdmin]
