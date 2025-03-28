@@ -13,3 +13,10 @@ class IsRegistrar(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.role == 'R'
+    
+class IsLecturer(permissions.BasePermission):
+    """
+    Custom permission to only allow lecturers to access the view.
+    """
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'L'
