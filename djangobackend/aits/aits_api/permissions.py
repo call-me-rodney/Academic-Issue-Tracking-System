@@ -20,3 +20,10 @@ class IsLecturer(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.role == 'L'
+
+class IsStudent(permissions.BasePermission):
+    """
+    Custom permission to only allow students to access the view.
+    """
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'S'
