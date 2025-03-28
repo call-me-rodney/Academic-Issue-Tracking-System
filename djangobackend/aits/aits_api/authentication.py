@@ -71,3 +71,14 @@ class UserViewSet(viewsets.ModelViewSet):
     def me(self, request):
         serializer = userSerializer(request.user)
         return Response(serializer.data)
+    
+class IssueViewSet(viewsets.ModelViewSet):
+    queryset = issues.objects.all()
+    serializer_class = issueSerializer
+    
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            return [permissions.IsAuthenticated()]
+        if self.action == 'create':
+            return [permissions.IsAuthenticated(), IsStudent()]
+        return [permissions.IsAuthenticated(), IsAdmin() | IsRegistrar() | IsLecturer()]
