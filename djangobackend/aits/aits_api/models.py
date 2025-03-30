@@ -96,7 +96,7 @@ class Issue(models.Model):
     def __str__(self):
         return f"Issue #{self.issueID}: {self.get_category_display()}"
 
-Notifications Model
+#Notifications Model
 class Notification(models.Model):
     STATE = {
         'READ': 'READ',
