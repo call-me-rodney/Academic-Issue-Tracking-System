@@ -19,7 +19,7 @@ urlpatterns = [
     # Department endpoints
     path('departments/', DepartmentListView.as_view(), name='department-list'),
 
-    # Notification endpoints
-    path('notifications/', NotificationListView.as_view(), name='notification-list'),
-    path('notifications/<int:pk>/', NotificationDetailView.as_view(), name='notification-detail'),
+    # # Notification endpoints
+    # path('notifications/', NotificationListView.as_view(), name='notification-list'),
+    # path('notifications/<int:pk>/', NotificationDetailView.as_view(), name='notification-detail'),
 ]
