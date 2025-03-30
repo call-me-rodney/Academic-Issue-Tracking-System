@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import User, Department, Issue, Notification
+from .models import User, Department, Issue
 
 class CustomUserAdmin(UserAdmin):
     model = User
@@ -26,6 +26,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Department)
 admin.site.register(Issue)
-admin.site.register(Notification)
-#superuser name: postgres
-#password: postgres
+#admin.site.register(Notification)
