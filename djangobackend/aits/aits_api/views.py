@@ -110,14 +110,14 @@ class IssueListView(APIView):
         if serializer.is_valid():
             issue = serializer.save()
             
-            # Create notification for registrar
-            registrars = User.objects.filter(role='R')
-            for registrar in registrars:
-                Notification.objects.create(
-                    user=registrar,
-                    issue=issue,
-                    message=f"New issue created: {issue.get_category_display()} by {request.user.first_name} {request.user.last_name}"
-                )
+            # # Create notification for registrar
+            # registrars = User.objects.filter(role='R')
+            # for registrar in registrars:
+            #     Notification.objects.create(
+            #         user=registrar,
+            #         issue=issue,
+            #         message=f"New issue created: {issue.get_category_display()} by {request.user.first_name} {request.user.last_name}"
+            #     )
                 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -148,11 +148,11 @@ class IssueDetailView(APIView):
                     updated_issue = serializer.save()
                     
                     # Create notification for the issue owner
-                    Notification.objects.create(
-                        user=issue.user,
-                        issue=issue,
-                        message=f"Your issue has been updated. Status: {updated_issue.get_status_display()}"
-                    )
+                    # Notification.objects.create(
+                    #     user=issue.user,
+                    #     issue=issue,
+                    #     message=f"Your issue has been updated. Status: {updated_issue.get_status_display()}"
+                    # )
                     
                     return Response(serializer.data)
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -180,31 +180,31 @@ class DepartmentListView(APIView):
         return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
     
 # Notification Views
-class NotificationListView(APIView):
-    permission_classes = [IsAuthenticated]
+# class NotificationListView(APIView):
+#     permission_classes = [IsAuthenticated]
     
-    def get(self, request):
-        # Users can only see their own notifications
-        notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
-        serializer = NotificationSerializer(notifications, many=True)
-        return Response(serializer.data)
+#     def get(self, request):
+#         # Users can only see their own notifications
+#         notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
+#         serializer = NotificationSerializer(notifications, many=True)
+#         return Response(serializer.data)
 
-class NotificationDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+# class NotificationDetailView(APIView):
+#     permission_classes = [IsAuthenticated]
     
-    def put(self, request, pk):
-        try:
-            notification = Notification.objects.get(pk=pk)
-            # Users can only update their own notifications
-            if request.user == notification.user:
-                serializer = NotificationSerializer(notification, data=request.data, partial=True)
-                if serializer.is_valid():
-                    serializer.save()
-                    return Response(serializer.data)
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
-        except Notification.DoesNotExist:
-            return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
+#     def put(self, request, pk):
+#         try:
+#             notification = Notification.objects.get(pk=pk)
+#             # Users can only update their own notifications
+#             if request.user == notification.user:
+#                 serializer = NotificationSerializer(notification, data=request.data, partial=True)
+#                 if serializer.is_valid():
+#                     serializer.save()
+#                     return Response(serializer.data)
+#                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#             return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
+#         except Notification.DoesNotExist:
+#             return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
 
 # Home view for basic API information
 class Home(APIView):

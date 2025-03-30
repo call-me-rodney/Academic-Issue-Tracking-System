@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from .models import Department, Issue, Notification
+from .models import Department, Issue
 
 User = get_user_model()
 
@@ -70,8 +70,8 @@ class IssueSerializer(serializers.ModelSerializer):
     def get_status_display(self, obj):
         return obj.get_status_display()
 
-class NotificationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Notification
-        fields = ['notID', 'user', 'issue', 'message', 'state', 'created_at']
-        read_only_fields = ['notID', 'created_at']
+# class NotificationSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Notification
+#         fields = ['notID', 'user', 'issue', 'message', 'state', 'created_at']
+#         read_only_fields = ['notID', 'created_at']
