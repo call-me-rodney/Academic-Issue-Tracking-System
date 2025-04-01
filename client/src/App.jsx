@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './App.css';
 import IssueSubmit from './IssueSubmit'; // Import the IssueSubmit component
 import Login from './componets/Login';
