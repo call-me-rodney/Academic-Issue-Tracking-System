@@ -11,7 +11,7 @@ const IssueSubmit = () => {
             <input required type="text" placeholder="Insert your student Number" name="student-id"/>
           </div>
         <div className="input-box">
-          <label for="reg-no">Registration Number</label>
+          <label For="reg-no">Registration Number</label>
           <input required type="text" placeholder="Insert your Reg Number" name="reg-no"/>
         </div>
         <div className="input-box">
