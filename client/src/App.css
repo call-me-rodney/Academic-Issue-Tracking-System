@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    text-decoration: none;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(130, 106, 251);
+    padding:20px;
+}
+.container{
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    
+}
+.container h1{
+    font-size: 2rem;
+    font-weight: 500;
+    color: #333;
+    text-align: center;   
+}
+.container .form{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:center;
+   }
+.form .input-box{
+    width: 100%;
+    margin-top: 30px;
+}
+label{
+    color: #333;
+
+}
+.form .input-box input{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    color: #707070;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+textarea{
+    position: relative;
+    height: 100px;
+    width: 100%;
+    outline: none;
+    color: #707070;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+button{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    background: rgb(130, 106, 251);
+    font-size: 1.0rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.category{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    outline: none;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    color: #707070;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+.button{
+   display: flex;
+   justify-content: space-between;
+    column-gap: 20px;
+    width: 100%;
+}
+button:hover{
+    background: rgb(3, 3, 5);
+}
+.attachments{
+    display: flex;
+    justify-content:space-between;
+    align-content: center;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    color: #707070;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+.attachments input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
