@@ -1,74 +1,71 @@
-/* General container styling */
+/* IssueSubmit.css */
+
 .container {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 50%;
+  margin: auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
+  color: #333;
 }
 
-/* Form styling */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
 .input-box {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 15px;
 }
 
 .input-box label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
-  margin-bottom: 8px;
+  color: #555;
 }
 
-.input-box input,
 .input-box select,
 .input-box textarea {
+  width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
 }
 
 .input-box textarea {
-  resize: vertical;
+  resize: none;
 }
 
-/* Button styling */
 .button {
   display: flex;
   justify-content: space-between;
 }
 
-button {
+.button button {
   padding: 10px 20px;
-  font-size: 16px;
   border: none;
   border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-}
-
-button[type="button"] {
+.button button[type="button"] {
   background-color: #f44336;
   color: white;
 }
 
-button:hover {
-  opacity: 0.9;
+.button button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+}
+
+.button button:hover {
+  opacity: 0.8;
 }
