@@ -1,6 +1,6 @@
-import React from 'react'
-import './SignUp.css'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import './SignUp.css';
+import { NavLink } from 'react-router-dom';
 
 const SignUp = () => {
   return (
