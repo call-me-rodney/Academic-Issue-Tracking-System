@@ -4,25 +4,17 @@ import './IssueSubmit.css'; // Link to the CSS file
 const IssueSubmit = () => {
   // State to manage form data
   const [formData, setFormData] = useState({
-    studentId: '',
-    regNo: '',
-    name: '',
-    subject: '',
     category: '',
     course: '',
     description: '',
-    attachments: null,
-    yearOfStudy: '',
-    semester: '',
-    lecturer: '',
   });
 
   // Handle input changes
   const handleChange = (event) => {
-    const { name, value, type, files } = event.target;
+    const { name, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'file' ? files[0] : value,
+      [name]: value,
     }));
   };
 
@@ -36,17 +28,9 @@ const IssueSubmit = () => {
   // Handle form reset
   const handleReset = () => {
     setFormData({
-      studentId: '',
-      regNo: '',
-      name: '',
-      subject: '',
       category: '',
       course: '',
       description: '',
-      attachments: null,
-      yearOfStudy: '',
-      semester: '',
-      lecturer: '',
     });
   };
 
@@ -54,62 +38,6 @@ const IssueSubmit = () => {
     <div className="container">
       <h1>Issue Form</h1>
       <form onSubmit={handleSubmit} className="form">
-        {/* Student ID */}
-        <div className="input-box">
-          <label htmlFor="studentId">Student ID</label>
-          <input
-            required
-            type="text"
-            placeholder="Insert your student number"
-            name="studentId"
-            id="studentId"
-            value={formData.studentId}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Registration Number */}
-        <div className="input-box">
-          <label htmlFor="regNo">Registration Number</label>
-          <input
-            required
-            type="text"
-            placeholder="Insert your reg number"
-            name="regNo"
-            id="regNo"
-            value={formData.regNo}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Full Name */}
-        <div className="input-box">
-          <label htmlFor="name">Name</label>
-          <input
-            required
-            type="text"
-            placeholder="Insert your full name"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Subject */}
-        <div className="input-box">
-          <label htmlFor="subject">Subject</label>
-          <input
-            required
-            type="text"
-            placeholder="Enter Subject"
-            name="subject"
-            id="subject"
-            value={formData.subject}
-            onChange={handleChange}
-          />
-        </div>
-
         {/* Category */}
         <div className="input-box">
           <label htmlFor="category">Category</label>
@@ -147,54 +75,6 @@ const IssueSubmit = () => {
             value={formData.description}
             onChange={handleChange}
           ></textarea>
-        </div>
-
-        {/* Attachments */}
-        <div className="input-box">
-          <label htmlFor="attachments">Attachments</label>
-          <input
-            type="file"
-            name="attachments"
-            id="attachments"
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Year of Study */}
-        <div className="input-box">
-          <label htmlFor="yearOfStudy">Year Of Study</label>
-          <select name="yearOfStudy" id="yearOfStudy" value={formData.yearOfStudy} onChange={handleChange}>
-            <option value="">Select a year</option>
-            <option value="1">Year 1</option>
-            <option value="2">Year 2</option>
-            <option value="3">Year 3</option>
-            <option value="4">Year 4</option>
-          </select>
-        </div>
-
-        {/* Semester */}
-        <div className="input-box">
-          <label htmlFor="semester">Semester</label>
-          <select name="semester" id="semester" value={formData.semester} onChange={handleChange}>
-            <option value="">Select a semester</option>
-            <option value="1">Semester 1</option>
-            <option value="2">Semester 2</option>
-            <option value="3">Semester 3</option>
-            <option value="4">Semester 4</option>
-          </select>
-        </div>
-
-        {/* Lecturer */}
-        <div className="input-box">
-          <label htmlFor="lecturer">Lecturer</label>
-          <input
-            type="search"
-            placeholder="Search"
-            name="lecturer"
-            id="lecturer"
-            value={formData.lecturer}
-            onChange={handleChange}
-          />
         </div>
 
         {/* Buttons */}
