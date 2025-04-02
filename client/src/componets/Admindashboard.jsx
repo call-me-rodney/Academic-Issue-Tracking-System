@@ -1,6 +1,5 @@
-// Admindashboard.jsx
 import React, { useState } from 'react';
-import './styles.css';  // Make sure the path is correct
+import './Admindashboard.css'; 
 
 
 const issuesData = [
