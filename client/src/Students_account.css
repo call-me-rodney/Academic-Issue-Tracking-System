@@ -1,0 +1,105 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(246, 244, 248);
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: blueviolet;
+  font-weight: bold;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.container .form {
+  padding: 2rem;
+}
+
+.form .input-box {
+  padding: 20px;
+  height: 20px;
+  width: 100%;
+  outline: none;
+  border-radius: 6px;
+  border: 1px solid rgb(158, 150, 150);
+}
+
+.space {
+  margin-bottom: 20px;
+}
+
+.back {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.submit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: #fff;
+  border-radius: 6px;
+  background-color: blueviolet;
+}
+
+.submit:hover {
+  background-color: #5a4fcf;
+}
+
+.account {
+  color: blueviolet;
+  font-size: 1rem;
+}
+
+.forgot {
+  color: blueviolet;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.slogan {
+  color: rgb(158, 150, 150);
+  font-size: 1rem;
+  outline: none;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
