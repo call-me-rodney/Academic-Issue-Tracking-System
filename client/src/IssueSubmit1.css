@@ -1,11 +1,8 @@
-/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
+    box-sizing: border-box;}
 
-/* Body Style */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f7f6;
@@ -13,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    max-height: 100vh;
 }
 
 /* Container Style */
