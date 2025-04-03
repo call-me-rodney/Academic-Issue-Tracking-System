@@ -1,4 +1,4 @@
-import './Issuesubmit.css'
+import './IssueSubmit1.css'
 const IssueSubmit = () => {
   return (  
     <div className="container">
