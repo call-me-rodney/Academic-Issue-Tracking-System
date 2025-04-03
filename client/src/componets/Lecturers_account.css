@@ -1,10 +1,22 @@
 *{
-    padding: 0;
-    margin: 0;
+    padding: 20px;
+    margin: auto;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    text-decoration: none;}
-    
+    background: f9f9f9 ;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0);
+    text-align: center;}
+.slogan h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.slogan p {
+  color: #666;
+  font-size: 14px;
+}
     body{
     height: 100vh;
     display: flex;
@@ -26,61 +38,72 @@
         box-shadow:0 5px 15px rgba(0,0,0,0.1);
         border-radius: 8px;}
     
-    .container .form{
-        padding: 2rem;}
-    
-    .form .input-box{
-        padding: 20px;
-        height: 20px;
-        width: 100%;
-        outline: none;
-        border-radius: 6px;
-        border: 1px solid rgb(158, 150, 150);}
-    
-    .space{margin-bottom: 20px;}
-    
-    .back{display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;}
+    .form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+        
+     .space{
+         text-align: left
+     }
+.space label {
+  font-weight: bold;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+.input-box, .dropdown {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
     .group{
         display: flex;
-        justify-content: center;
-        align-items: center;
-    gap: 20px;}
-    
+        justify-content: space-between;
+        margin-top:10px;
+    }
     
     .submit{
-    display: inline-flex;
-    justify-content:center;
-    align-items: center;
-    width: 50%; 
-    padding:  10px;
-    margin-bottom: 20px;
-    color: #fff;
-    border-radius: 6px;
-    background-color: blueviolet;}
+    padding:  10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;   }
 
-    .submit:hover{
-        background-color: #5a4fcf;}
+    .submit:first-child {
+  background-color: #f44336;
+  color: white;
+}
+     .submit:last-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+.submit:hover {
+  opacity: 0.8;
+}
+
+    .account{
+    color: 007bff;
+    font-weight: bold;
+    text-decoration: none;
     
-    .account{color: blueviolet;
-    font-size: 1rem;}
     
+    }
+    .account:hover {
+  text-decoration: underline;
+}
+
     .forgot{color: blueviolet;}
      
     .dropdown {
-        width: 100%;
-        padding: 10px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        background-color: #fff;
-        cursor: pointer;
-        margin-bottom: 20px;
+        curser: pointer;
     }
 
-    .slogan{color: rgb(158, 150, 150);
-        font-size: 1rem;
-        outline: none;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+   
