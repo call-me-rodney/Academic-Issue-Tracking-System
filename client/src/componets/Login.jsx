@@ -1,13 +1,46 @@
-import React from 'react';
-import './login.css';
-import { NavLink } from 'react-router-dom';
-import SignUp from './Signup';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Login.css';
+import { NavLink, useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const history = useHistory();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/login/', { email, password });
+      const { status, data } = response;
+
+      if (status === 200) {
+        // Assuming the response data contains userId and token
+        const { id, role, access } = data;
+        // Store the token for future requests
+        localStorage.setItem('authToken', access);
+        // Redirect to the user's dashboard
+        if (role === 'A') {
+          history.push(`/admindash/${id}`);
+        } else if (role === 'S') {
+          history.push(`/studentdash/${id}`);
+        } else if (role === 'L') {
+          history.push(`/lecturerdash/${id}`);
+        }
+      } else {
+        setError('Authentication failed. Please check your credentials.');
+      }
+    } catch (error) {
+      setError('An error occurred during login. Please try again.');
+    }
+  };
+
   return (
     <div className="container">
-      <form action="#" className="form">
-        <h1>Sign in to your account</h1> 
+      <form onSubmit={handleSubmit} className="form">
+        <h1>Sign in to your account</h1>
+        {error && <div className="error">{error}</div>}
         <div className="space">
           <label htmlFor="email">Your email</label>
           <input
@@ -17,6 +50,8 @@ const Login = () => {
             placeholder="Enter your email"
             name="email"
             id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="space">
@@ -28,6 +63,8 @@ const Login = () => {
             placeholder="Enter your password"
             name="password"
             id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="back">
@@ -39,7 +76,7 @@ const Login = () => {
             Forgot password?
           </NavLink>
         </div>
-        <div className="submit"> 
+        <div className="submit">
           <input type="submit" value="Sign in to account" />
         </div>
         <div>
@@ -47,7 +84,7 @@ const Login = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
