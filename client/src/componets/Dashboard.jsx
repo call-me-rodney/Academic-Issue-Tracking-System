@@ -2,7 +2,7 @@ import React from 'react'
 import { LucideAngry, LucideBaby, LucideBook, LucideBookImage, LucideBookUser, LucideCalendar, LucideContact, LucideContactRound, LucideFolderHeart, LucideGraduationCap, LucideLibrary, LucideSearch, LucideSprout, LucideTableProperties } from 'lucide-react'
 import { LucideMenu } from 'lucide-react'
 import './Dashboard.css'
-import {Navlink} from 'react-router-dom' 
+import {NavLink} from 'react-router-dom' 
 
 const sidebar = () => {
   return (
@@ -12,7 +12,7 @@ const sidebar = () => {
         <ul>
           <li><LucideGraduationCap className='search-icon'/><i/>Course</li>
           <li><LucideBookUser className='search-icon'/><i/>My Result</li>
-          <li><LucideContact className='search-icon'/><i/>My Issues</li>
+          <li><NavLink to="/submitissue"><LucideContact className='search-icon'/><i/>My Issues</NavLink></li>
           <li><LucideCalendar className='search-icon'/><i/>Academic Calender</li>
           <li><LucideFolderHeart className='search-icon'/><i/>My Profile</li>
           <li></li>
