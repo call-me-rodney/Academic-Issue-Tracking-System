@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./LecturersAccount.css"; // Ensure the CSS file is imported
+import "./LecturersAccount.css"; 
 
 const LecturersAccount = () => {
   const [lecturerNumber, setLecturerNumber] = useState("");
