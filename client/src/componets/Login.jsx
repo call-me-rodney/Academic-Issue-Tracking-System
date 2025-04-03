@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,16 +17,16 @@ const Login = () => {
 
       if (status === 200) {
         // Assuming the response data contains userId and token
-        const { id, role, access } = data;
+        const { access, user: { id, role } } = data;
         // Store the token for future requests
         localStorage.setItem('authToken', access);
         // Redirect to the user's dashboard
         if (role === 'A') {
-          history.push(`/admindash/${id}`);
+          navigate(`/admindash/${id}`);
         } else if (role === 'S') {
-          history.push(`/studentdash/${id}`);
+          navigate(`/studentdash/${id}`);
         } else if (role === 'L') {
-          history.push(`/lecturerdash/${id}`);
+          navigate(`/lecturerdash/${id}`);
         }
       } else {
         setError('Authentication failed. Please check your credentials.');
@@ -77,7 +77,7 @@ const Login = () => {
           </NavLink>
         </div>
         <div className="submit">
-          <input type="submit" value="Sign in to account" />
+          <button type="submit" onClick={handleSubmit}>Sign in to account</button>
         </div>
         <div>
           Not registered? <NavLink to="/signup">Create an account</NavLink>
