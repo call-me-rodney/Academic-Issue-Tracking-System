@@ -29,7 +29,7 @@ h1, h2 {
 label {
     font-size: 1rem;
     font-weight: bold;
-    margin: 10px 0 5px;
+    margin: 20px 0 5px;
     color: #000000;}
 
 /* Input and Select Styles */
@@ -38,7 +38,7 @@ input[type="date"],
 select,
 textarea {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -48,22 +48,20 @@ textarea {
 }
 
 input[type="file"] {
-    padding: 10px 0;
+    padding: 20px 0;
     font-size: 14px;
     color: #333;
 }
 
 textarea {
     resize: vertical;
-    height: 100px;
-}
+    height: 200px;}
 
 /* Button Container */
 .btn-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-}
+    margin-top: 20px;}
 
 /* Button Styles */
 button[type="reset"],
@@ -100,10 +98,4 @@ input[type="date"]:focus {
     outline: none;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-        width: 100%;
-    }
-}
+
