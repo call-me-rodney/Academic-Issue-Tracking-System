@@ -108,7 +108,7 @@ class IssueListView(APIView):
         request.data['user'] = request.user.id
         serializer = IssueSerializer(data=request.data)
         if serializer.is_valid():
-            issue = serializer.save()
+            serializer.save()
             
             # # Create notification for registrar
             # registrars = User.objects.filter(role='R')
