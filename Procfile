@@ -1,1 +1,0 @@
-web: gunicorn aits-group6-3cf5f74ceea6.wsgi
