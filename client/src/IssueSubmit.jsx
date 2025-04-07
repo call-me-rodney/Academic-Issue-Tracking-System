@@ -2,15 +2,17 @@ import './IssueSubmit1.css'
 const IssueSubmit = () => {
   return (  
     <div className="container">
-      <h1>Issue Form</h1>
+
       <h2>Submit Your Issue</h2>
       <form>
+        <div className="field">
           <label>Student ID</label>
           <input type="text" name="studentId" placeholder="Insert your student Number" />
-          
+          </div>
+          <div className="field">
           <label>Registration Number</label>
           <input type="text" name="registrationNumber" placeholder="Insert your Reg Number" />
-          
+          </div>
           <label>Name</label>
           <input type="text" name="name" placeholder="Insert your full names" />
           
