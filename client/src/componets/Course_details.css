@@ -3,8 +3,8 @@ body {
     background-color: #f4f4f4;
     text-align: center;
     margin: 20px;
-  }
-  .container {
+}
+.container {
     width: 80%;
     margin: auto;
     background: #fff;
@@ -12,29 +12,27 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: left;
-  }
-  h2 {
+}
+h2 {
     background-color: blueviolet;
     color: white;
     padding: 10px;
     border-radius: 4px;
-  }
-  table {
+}
+table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-  }
-  th,
-  td {
+}
+th, td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
-  }
-  th {
+}
+th {
     background: blueviolet;
     color: white;
-  }
-  tr:nth-child(even) {
+}
+tr:nth-child(even) {
     background: #f9f9f9;
-  }
-  
+}
