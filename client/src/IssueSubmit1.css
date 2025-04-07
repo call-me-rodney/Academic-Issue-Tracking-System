@@ -20,7 +20,6 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 800px;
-    height: 100%;
     border-radius: 8px;}
 
 h1, h2 {
@@ -67,7 +66,7 @@ textarea {
 /* Button Styles */
 button[type="reset"],
 button[type="submit"] {
-    padding:20px;
+    padding: 10px 20px;
     font-size: 14px;
     font-weight: bold;
     border: none;
@@ -75,15 +74,28 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-button[type="reset"] {background-color: blueviolet;
+button[type="reset"] {
+    background-color: #f44336;
     color: white;
-    width: 50%;
 }
 
-button[type="submit"] {background-color: blueviolet;
+button[type="submit"] {
+    background-color: #4CAF50;
     color: white;
-    width: 50%;}
-.btn-container{gap: 10px;}
+}
 
+button[type="reset"]:hover,
+button[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+/* Hover Effects */
+input[type="text"]:focus,
+select:focus,
+textarea:focus,
+input[type="date"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
 
 
