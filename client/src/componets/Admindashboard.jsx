@@ -3,21 +3,21 @@ import './Admindashboard.css';
 
 
 const issuesData = [
-  { id: 1, description: "Issue 1", status: "Pending" },
-  { id: 2, description: "Issue 2", status: "Resolved" },
-  { id: 3, description: "Issue 3", status: "In Progress" }
+  { id: 1, description: "", status: "Pending" },
+  { id: 2, description: "", status: "Resolved" },
+  { id: 3, description: "", status: "In Progress" }
 ];
 
 const lecturersData = [
-  { id: 1, name: "John Doe", subject: "Math" },
-  { id: 2, name: "Jane Smith", subject: "Science" },
-  { id: 3, name: "Bob Johnson", subject: "History" }
+  { id: 1, name: "", subject: "" },
+  { id: 2, name: "", subject: "" },
+  { id: 3, name: "", subject: "" }
 ];
 
 const studentsData = [
-  { id: 1, name: "Alice Brown", course: "Engineering" },
-  { id: 2, name: "Charlie Davis", course: "Medicine" },
-  { id: 3, name: "David Wilson", course: "Law" }
+  { id: 1, name: "", course: "" },
+  { id: 2, name: "", course: "" },
+  { id: 3, name: "", course: "" }
 ];
 
 function Admindashboard() {
