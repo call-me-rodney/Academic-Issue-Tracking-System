@@ -1,3 +1,8 @@
+__pycache__/
+.venv/
+venv/
+staticfiles/
+.DS_Store
 .qodo
 .vscode
 .env
