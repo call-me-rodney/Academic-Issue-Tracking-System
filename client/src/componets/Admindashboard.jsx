@@ -2,7 +2,11 @@ import React, { useState,useEffect } from 'react';
 import './Admindashboard.css'; 
 import axios from 'axios';
 
-
+function Admindashboard() {
+  const [currentContent, setCurrentContent] = useState('issues');
+  const [issues, setIssues] = useState([]);
+  const [lecturers, setLecturers] = useState([]);
+  const [students, setStudents] = useState([]);
 
 const issuesData = [
   { id: 1, description: "", status: "Pending" },
@@ -21,9 +25,6 @@ const studentsData = [
   { id: 2, name: "", course: "" },
   { id: 3, name: "", course: "" }
 ];
-
-function Admindashboard() {
-  const [currentContent, setCurrentContent] = useState('issues');
 
   const renderIssues = () => (
     <div className="content">
