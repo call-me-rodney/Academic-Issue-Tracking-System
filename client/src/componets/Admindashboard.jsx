@@ -7,6 +7,23 @@ function Admindashboard() {
   const [issues, setIssues] = useState([]);
   const [lecturers, setLecturers] = useState([]);
   const [students, setStudents] = useState([]);
+  
+  useEffect(() => {
+    if (currentContent === 'issues') {
+      axios.get('http://localhost:5000/api/issues')
+        .then(res => setIssues(res.data))
+        .catch(err => console.error(err));
+    } else if (currentContent === 'lecturers') {
+      axios.get('http://localhost:5000/api/lecturers')
+        .then(res => setLecturers(res.data))
+        .catch(err => console.error(err));
+    } else if (currentContent === 'students') {
+      axios.get('http://localhost:5000/api/students')
+        .then(res => setStudents(res.data))
+        .catch(err => console.error(err));
+    }
+  }, [currentContent]);
+  
 
 const issuesData = [
   { id: 1, description: "", status: "Pending" },
