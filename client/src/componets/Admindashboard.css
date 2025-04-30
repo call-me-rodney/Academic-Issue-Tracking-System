@@ -45,7 +45,11 @@
     font-size: 18px;
     cursor: pointer;
   }
-  
+  .sidebar ul li button.active {
+  background-color: #555;
+  font-weight: bold;
+}
+
   .sidebar ul li button:hover {
     background-color: #444;
     padding-left: 10px;
