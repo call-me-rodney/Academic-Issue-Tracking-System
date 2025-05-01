@@ -10,15 +10,15 @@ function Admindashboard() {
   
   useEffect(() => {
     if (currentContent === 'issues') {
-      axios.get('http://localhost:5000/api/issues')
+      axios.get('http://localhost:3000/api/issues')
         .then(res => setIssues(res.data))
         .catch(err => console.error(err));
     } else if (currentContent === 'lecturers') {
-      axios.get('http://localhost:5000/api/lecturers')
+      axios.get('http://localhost:3000/api/lecturers')
         .then(res => setLecturers(res.data))
         .catch(err => console.error(err));
     } else if (currentContent === 'students') {
-      axios.get('http://localhost:5000/api/students')
+      axios.get('http://localhost:3000/api/students')
         .then(res => setStudents(res.data))
         .catch(err => console.error(err));
     }
