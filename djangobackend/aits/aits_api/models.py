@@ -71,9 +71,9 @@ class Department(models.Model):
 class Issue(models.Model):
     STATUS = {
         'CREATED': 'CREATED',
-        'PENDING': 'PENDING',
         'OPEN': 'OPEN',
         'RESOLVED': 'RESOLVED',
+        'DROPPED':'DROPPED',
     }
     
     CATEGORY = {
@@ -84,11 +84,11 @@ class Issue(models.Model):
     }
     
     issueID = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='issues')
+    student = models.ForeignKey(User, on_delete=models.CASCADE, related_name='issues')
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    category = models.CharField(max_length=2, choices=CATEGORY.items())
+    category = models.CharField(max_length=2, choices=CATEGORY)
     description = models.CharField(max_length=255)
-    status = models.CharField(max_length=20, choices=STATUS.items(), default='CREATED')
+    status = models.CharField(max_length=20, choices=STATUS, default='CREATED')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_issues')
