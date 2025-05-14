@@ -53,15 +53,15 @@ class User(AbstractUser, PermissionsMixin):
 # Departments Model
 class Department(models.Model):
     COLLEGE = {
-        'COCIS': 'College of Computing and Information Sciences',
-        'CEDAT': 'College of Engineering, Design, Art and Technology',
-        'COBAMS': 'College of Business and Management Sciences',
-        'CHUSS': 'College of Humanities and Social Sciences',
+        'COCIS': 'COCIS',
+        'CEDAT': 'CEDAT',
+        'COBAMS': 'COBAMS',
+        'CHUSS': 'CHUSS',
     }
     
     deptID = models.AutoField(primary_key=True)
     deptName = models.CharField(max_length=100)
-    college = models.CharField(max_length=10, choices=COLLEGE.items())
+    college = models.CharField(max_length=10, choices=COLLEGE)
     description = models.CharField(max_length=100)
     
     def __str__(self):
