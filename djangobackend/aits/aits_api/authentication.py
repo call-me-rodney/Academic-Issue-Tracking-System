@@ -3,11 +3,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
-from .models import users, roles, departments, issues, notifications
-from .serializer import (
-    userSerializer, userCreateSerializer, loginSerializer,
-    roleSerializer, deptSerializer, issueSerializer, notificationSerializer
-)
+from .models import users, roles, departments, issues
+from .serializer import *
 from .permissions import IsAdmin, IsRegistrar, IsLecturer, IsStudent
 
 class RoleViewSet(viewsets.ModelViewSet):
@@ -83,11 +80,3 @@ class IssueViewSet(viewsets.ModelViewSet):
             return [permissions.IsAuthenticated(), IsStudent()]
         return [permissions.IsAuthenticated(), IsAdmin() | IsRegistrar() | IsLecturer()]
     
-class NotificationViewSet(viewsets.ModelViewSet):
-    queryset = notifications.objects.all()
-    serializer_class = notificationSerializer
-    permission_classes = [permissions.IsAuthenticated]
-    
-    def get_queryset(self):
-        # Only show notifications for the current user
-        return notifications.objects.filter(userID=self.request.user)
