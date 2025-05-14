@@ -109,16 +109,6 @@ class IssueListView(APIView):
         serializer = IssueSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            
-            # # Create notification for registrar
-            # registrars = User.objects.filter(role='R')
-            # for registrar in registrars:
-            #     Notification.objects.create(
-            #         user=registrar,
-            #         issue=issue,
-            #         message=f"New issue created: {issue.get_category_display()} by {request.user.first_name} {request.user.last_name}"
-            #     )
-                
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
@@ -146,14 +136,6 @@ class IssueDetailView(APIView):
                 serializer = IssueSerializer(issue, data=request.data, partial=True)
                 if serializer.is_valid():
                     updated_issue = serializer.save()
-                    
-                    # Create notification for the issue owner
-                    # Notification.objects.create(
-                    #     user=issue.user,
-                    #     issue=issue,
-                    #     message=f"Your issue has been updated. Status: {updated_issue.get_status_display()}"
-                    # )
-                    
                     return Response(serializer.data)
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
