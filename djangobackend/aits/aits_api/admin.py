@@ -26,4 +26,3 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Department)
 admin.site.register(Issue)
-#admin.site.register(Notification)
