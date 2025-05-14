@@ -69,9 +69,3 @@ class IssueSerializer(serializers.ModelSerializer):
     
     def get_status_display(self, obj):
         return obj.get_status_display()
-
-# class NotificationSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Notification
-#         fields = ['notID', 'user', 'issue', 'message', 'state', 'created_at']
-#         read_only_fields = ['notID', 'created_at']
