@@ -66,7 +66,7 @@ const SignUp = () => {
               onChange={(e) => setUser({...user, fname: e.target.value})}
             />
           </div>
-          <div className="input">
+          <div >
             <label htmlFor="lastName">Last name</label>
             <input
               className="input-box"
