@@ -53,7 +53,7 @@ const SignUp = () => {
         <h1>Create an account</h1>
         {error && <div className="error">{error}</div>}
         <div className="box">
-          <div className="input">
+          <div >
             <label htmlFor="firstName">First name</label>
             <input
               className="input-box"
