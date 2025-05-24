@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -12,14 +12,16 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login/', { email, password });
+      const response = await axios.post('http://localhost:8000/api/login/', { email, password });
       const { status, data } = response;
 
       if (status === 200) {
         // Assuming the response data contains userId and token
-        const { access, user: { id, role } } = data;
+        const { access, user: { id, role }, user } = data;
         // Store the token for future requests
         localStorage.setItem('authToken', access);
+        localStorage.setItem('userId', id);
+        localStorage.setItem("user",user)
         // Redirect to the user's dashboard
         if (role === 'A') {
           navigate(`/admindash/${id}`);
@@ -66,15 +68,6 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <div className="back">
-          <div>
-            <input type="checkbox" id="remember-me" />
-            <label htmlFor="remember-me">Remember me</label>
-          </div>
-          <NavLink className="account" to="/forgot-password">
-            Forgot password?
-          </NavLink>
         </div>
         <div className="submit">
           <button type="submit" onClick={handleSubmit}>Sign in to account</button>

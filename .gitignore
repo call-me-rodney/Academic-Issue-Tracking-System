@@ -1,4 +1,5 @@
 .qodo
+.vscode
 # Logs
 logs
 *.log

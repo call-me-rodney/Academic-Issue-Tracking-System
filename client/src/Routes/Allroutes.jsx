@@ -1,10 +1,10 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom';
-import Login from '../componets/Login';
-import SignUp from '../componets/Signup';
-import Admindashboard from '../componets/Admindashboard';
-import IssueSubmit from '../componets/IssueSubmit';
-import Dashboard from '../componets/Dashboard';
+import Login from '../pages/Login';
+import SignUp from '../pages/Signup';
+import Admindash from '../pages/Admindash';
+import IssueSubmit from '../pages/IssueSubmit';
+import Studentdash from '../pages/Studentdash';
+import Lecturerdash from '../pages/Lecturerdash';
 
 const Allroutes = () => {
   return (
@@ -12,8 +12,9 @@ const Allroutes = () => {
       <Route path='/' element={<Login />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp/>} />
-      <Route path='/admin/:id' element={<Admindashboard />} />
-      <Route path='/studentdash/:id' element={<Dashboard/>} />
+      <Route path='/admindash/:id' element={<Admindash />} />
+      <Route path='/studentdash/:id' element={<Studentdash/>} />
+      <Route path='/lecturerdash/:id' element={<Lecturerdash/>} />
       <Route path='/submitissue' element={<IssueSubmit/>} />
     </Routes>
   )
