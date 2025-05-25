@@ -16,7 +16,7 @@ import os
 # port using the IPv4 interface (`0.0.0.0`). We configure the binding manually to make it bind
 # to the IPv6 interface (`::`) instead, so that the app works in IPv6-only environments too.
 # (IPv4 connections will still work so long as `IPV6_V6ONLY` hasn't been enabled.)
-bind = ["[::]:{}".format(os.environ.get("PORT", 5006))]
+bind = ["[::]:{}".format(os.environ.get("PORT", 8000))]
 
 # The default `sync` worker is more suited to CPU/network-bandwidth bound workloads, so we
 # instead use the thread based worker type for improved support of blocking I/O workloads:
