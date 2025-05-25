@@ -17,18 +17,18 @@ const Login = () => {
 
       if (status === 200) {
         // Assuming the response data contains userId and token
-        const { access, user: { id, role }, user } = data;
+        const { access, user: { unique_number, role }, user } = data;
         // Store the token for future requests
         localStorage.setItem('authToken', access);
-        localStorage.setItem('userId', id);
+        localStorage.setItem('userId', unique_number);
         localStorage.setItem("user",user)
         // Redirect to the user's dashboard
         if (role === 'A') {
-          navigate(`/admindash/${id}`);
+          navigate(`/admindash/${unique_number}`);
         } else if (role === 'S') {
-          navigate(`/studentdash/${id}`);
+          navigate(`/studentdash/${unique_number}`);
         } else if (role === 'L') {
-          navigate(`/lecturerdash/${id}`);
+          navigate(`/lecturerdash/${unique_number}`);
         }
       } else {
         setError('Authentication failed. Please check your credentials.');

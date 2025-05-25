@@ -4,11 +4,12 @@ import { useNavigate, NavLink } from 'react-router-dom';
 
 const SignUp = () => {
   const [user, setUser] = useState({
-    fname: "",
-    lname:"",
+    first_name: "",
+    unique_number:"",
+    last_name:"",
     email: "",
     password: "",
-    confirmPassword:"",
+    password2:"",
     role: "",
     dept:"",
   })
@@ -23,18 +24,18 @@ const SignUp = () => {
       const { status, data } = response;
       
       if (status === 200) {
-        const { access, user: { id, role },user} = data;
+        const { access, user: { unique_number, role },user} = data;
         localStorage.setItem('authToken', access);
-        localStorage.setItem('userId', id);
+        localStorage.setItem('userId', unique_number);
         localStorage.setItem('user', user);
         alert("Signup was successful")
         //redirect to respective dashboard based on role
         if (role === "S"){
-          navigate(`studentdash/${id}`)
+          navigate(`studentdash/${unique_number}`)
         }else if(role === "A"){
-          navigate(`admindash/${id}`)
+          navigate(`admindash/${unique_number}`)
         }else if(role === "L"){
-          navigate(`lecturerdash/${id}`)
+          navigate(`lecturerdash/${unique_number}`)
         }
 
       } else {
@@ -60,10 +61,10 @@ const SignUp = () => {
               required
               type="text"
               placeholder="Enter your first name"
-              name="fname"
-              id="fname"
-              value={user.fname}
-              onChange={(e) => setUser({...user, fname: e.target.value})}
+              name="first_name"
+              id="first_name"
+              value={user.first_name}
+              onChange={(e) => setUser({...user, first_name: e.target.value})}
             />
           </div>
           <div >
@@ -73,12 +74,25 @@ const SignUp = () => {
               required
               type="text"
               placeholder="Enter your last name"
-              name="lname"
-              id="lname"
-              value={user.lname}
-              onChange={(e) => setUser({...user, lname: e.target.value})}
+              name="last_name"
+              id="last_name"
+              value={user.last_name}
+              onChange={(e) => setUser({...user, last_name: e.target.value})}
             />
           </div>
+        </div>
+        <div className="input">
+          <label htmlFor="unique_number">Your unique number</label>
+          <input
+            className="input-box"
+            required
+            type="unique_number"
+            placeholder="Enter your unique number"
+            name="unique_number"
+            id="unique_number"
+            value={user.unique_number}
+            onChange={(e) => setUser({...user, unique_number: e.target.value})}
+          />
         </div>
         <div className="input">
           <label htmlFor="email">Your email</label>
@@ -97,9 +111,9 @@ const SignUp = () => {
           <label htmlFor="Role">Role</label>
           <select value={user.role}onChange={(e) => setUser({...user, role: e.target.value})} required>
             <option value="">Select role</option>
-            <option value="Student">Student</option>
-            <option value="Admin">Admin</option>
-            <option value="Lecturer">Lecturer</option>
+            <option value="S">Student</option>
+            <option value="A">Admin</option>
+            <option value="L">Lecturer</option>
           </select>
         </div>
         <div className="input">
@@ -129,16 +143,16 @@ const SignUp = () => {
           />
         </div>
         <div className="input">
-          <label htmlFor="confirmPassword">Confirm password</label>
+          <label htmlFor="password2">Confirm password</label>
           <input
             className="input-box"
             required
             type="password"
             placeholder="Confirm your password"
-            name="confirmPassword"
-            id="confirmPassword"
-            value={user.confirmPassword}
-            onChange={(e) => setUser({...user, confirmPassword: e.target.value})}
+            name="password2"
+            id="password2"
+            value={user.password2}
+            onChange={(e) => setUser({...user, password2: e.target.value})}
           />
         </div>
         <div className="button">

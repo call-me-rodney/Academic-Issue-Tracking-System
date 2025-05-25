@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Report from "../components/Report"
+import Button from "../components/Button"
 import "./Studentdash.css";
 
 const Studentdash = () => {
@@ -14,6 +15,7 @@ const Studentdash = () => {
                 {error && <p className="error-message">{error}</p>}
                 </div>
             </div>
+            <Button />
         </div>
     )
 }
