@@ -7,5 +7,5 @@ export default defineConfig({
   plugins: [react(),
     tailwindcss()
   ],
-  base: '/Academic-Issue-Tracking-System/',
+  base:'/Academic-Issue-Tracking-System/',
 })
