@@ -45,12 +45,11 @@ DEBUG = os.environ["ENVIRONMENT"] == "development"
 IS_HEROKU_APP = "DYNO" in os.environ and "CI" not in os.environ
 
 if IS_HEROKU_APP:
-    ALLOWED_HOSTS = ["https://aits-backend-serve-6cfc52717a28.herokuapp.com/"]
+    ALLOWED_HOSTS = ["*"]
     #ALLOWED_HOSTS = ["aitsserver-1046295a3930.herokuapp.com/"]
     SECURE_SSL_REDIRECT = True
 else:
-    ALLOWED_HOSTS = ["*"]
-    #ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
+    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
 
 
 # Application definition
