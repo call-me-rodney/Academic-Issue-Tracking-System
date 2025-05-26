@@ -12,7 +12,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/api/login/', { email, password });
+      const response = await axios.post('https://aits-backend-serve-6cfc52717a28.herokuapp.com/api/login/', { email, password });
       const { status, data } = response;
 
       if (status === 200) {
