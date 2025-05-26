@@ -87,7 +87,7 @@ class UserDetailView(APIView):
         
 # Issue Views
 class IssueListView(APIView):
-    permission_classes = [isAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     def get(self, request):
         # Filter issues based on user role
