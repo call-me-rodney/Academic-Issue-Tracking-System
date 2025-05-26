@@ -39,16 +39,18 @@ SECRET_KEY = 'django-insecure-9il=3+e&r7l-6$o^6q_3$7z(sa^gm$1u8*#1=w+riw*#2hp#-j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = os.environ.get("ENVIRONMENT") == "development"
-DEBUG = os.getenv("ENVIRONMENT") == "development"
+DEBUG = os.environ["ENVIRONMENT"] == "development"
 
 
 IS_HEROKU_APP = "DYNO" in os.environ and "CI" not in os.environ
 
 if IS_HEROKU_APP:
-    ALLOWED_HOSTS = ["aitsserver-1046295a3930.herokuapp.com/"]
+    ALLOWED_HOSTS = ["*"]
+    #ALLOWED_HOSTS = ["aitsserver-1046295a3930.herokuapp.com/"]
     SECURE_SSL_REDIRECT = True
 else:
-    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
+    ALLOWED_HOSTS = ["*"]
+    #ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
 
 
 # Application definition
@@ -115,7 +117,7 @@ WSGI_APPLICATION = 'aits.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+tmpPostgres = urlparse(os.environ["DATABASE_URL"])
 
 DATABASES = {
     'default': {

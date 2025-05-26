@@ -1,4 +1,4 @@
-web: gunicorn --config gunicorn.conf.py aits.wsgi
+web: gunicorn aits.wsgi
 
 release: ./manage.py migrate --no-input
 
