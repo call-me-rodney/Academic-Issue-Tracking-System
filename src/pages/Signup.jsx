@@ -20,7 +20,7 @@ const SignUp = () => {
     e.preventDefault()
 
     try {
-      const response = await axios.post("http://localhost:8000/api/register", user)
+      const response = await axios.post("https://aits-backend-serve-6cfc52717a28.herokuapp.com/api/register/", user)
       const { status, data } = response;
       
       if (status === 200) {
