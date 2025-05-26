@@ -92,6 +92,15 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_HEADERS = [
+    'content-type',  
+    'authorization',
+    'accept',
+    'x-requested-with',
+]
+
+CORS_ALLOW_METHODS = ['GET','POST','PUT','DELETE','OPTIONS']
+
 ROOT_URLCONF = 'aits.urls'
 
 TEMPLATES = [
