@@ -19,7 +19,7 @@ const IssueSubmit = () => {
       // Merge student ID just-in-time, don't store in state
       const submissionData = {
         ...formData,
-        student: localStorage.getItem("userid")
+        student: localStorage.getItem("userId")
       };
 
       const response = await axios.post("http://localhost:8000/api/issues/", submissionData);
