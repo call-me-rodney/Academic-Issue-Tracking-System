@@ -81,7 +81,7 @@ class Issue(models.Model):
         'MM': 'Missing Marks',
         'MC': 'Missing Coursework',
         'WM': 'Wrong Marks',
-        'MP': 'Paper Missed',
+        'Ap': 'Appeal',
     }
     
     issueID = models.AutoField(primary_key=True)
