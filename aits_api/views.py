@@ -105,7 +105,7 @@ class IssueListView(APIView):
     
     def post(self, request):
         # Add the current user as the issue creator
-        request.data['user'] = request.user.id
+        request.data['user'] = request.user.unique_number
         serializer = IssueSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
