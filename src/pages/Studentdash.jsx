@@ -7,16 +7,14 @@ const Studentdash = () => {
     const [error,setError] = useState('');
     
     return (
-        <div>
-            <div className="studentdash">
-                <h1>Student Dashboard</h1>
-                <div className="studentdash-content">
+        <>
+            <h1>Student Dashboard</h1>
+            <div>
                 <Report setError={setError} />
                 {error && <p className="error-message">{error}</p>}
-                </div>
             </div>
             <Button />
-        </div>
+        </>
     )
 }
 

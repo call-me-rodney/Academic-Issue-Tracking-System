@@ -25,18 +25,20 @@ const SignUp = () => {
       const { status, data } = response;
       
       if (status === 200) {
-        const { access, user: { unique_number, role },user} = data;
+        const { access, user: { unique_number, role }} = data;
+
+        //Store the token and user details for future requests
         localStorage.setItem('authToken', access);
         localStorage.setItem('userId', unique_number);
-        localStorage.setItem('user', user);
-        alert("Signup was successful")
+        localStorage.setItem('role', role);
+        
         //redirect to respective dashboard based on role
         if (role === "S"){
-          navigate(`studentdash/${unique_number}`)
+          navigate(`/studentdash/${unique_number}`)
         }else if(role === "A"){
-          navigate(`admindash/${unique_number}`)
+          navigate(`/admindash/${unique_number}`)
         }else if(role === "L"){
-          navigate(`lecturerdash/${unique_number}`)
+          navigate(`/lecturerdash/${unique_number}`)
         }
 
       } else {
@@ -44,7 +46,7 @@ const SignUp = () => {
         setError(data.message)
       }
     } catch (err) {
-      setError(err)
+      setError("An error occurred while registering. Please check the console for details.")
       console.log(err)
     }
   }
@@ -54,35 +56,33 @@ const SignUp = () => {
       <form onSubmit={handleSubmit} className="form">
         <h1>Create an account</h1>
         {error && <div className="error">{error}</div>}
-        <div className="box">
-          <div >
-            <label htmlFor="firstName">First name</label>
-            <input
-              className="input-box"
-              required
-              type="text"
-              placeholder="Enter your first name"
-              name="first_name"
-              id="first_name"
-              value={user.first_name}
-              onChange={(e) => setUser({...user, first_name: e.target.value})}
-            />
-          </div>
-          <div >
-            <label htmlFor="lastName">Last name</label>
-            <input
-              className="input-box"
-              required
-              type="text"
-              placeholder="Enter your last name"
-              name="last_name"
-              id="last_name"
-              value={user.last_name}
-              onChange={(e) => setUser({...user, last_name: e.target.value})}
-            />
-          </div>
+        <div>
+          <label htmlFor="firstName">First name</label>
+          <input
+            className="input-box"
+            required
+            type="text"
+            placeholder="Enter your first name"
+            name="first_name"
+            id="first_name"
+            value={user.first_name}
+            onChange={(e) => setUser({...user, first_name: e.target.value})}
+          />
         </div>
-        <div className="input">
+        <div >
+          <label htmlFor="lastName">Last name</label>
+          <input
+            className="input-box"
+            required
+            type="text"
+            placeholder="Enter your last name"
+            name="last_name"
+            id="last_name"
+            value={user.last_name}
+            onChange={(e) => setUser({...user, last_name: e.target.value})}
+          />
+        </div>
+        <div>
           <label htmlFor="unique_number">Your unique number</label>
           <input
             className="input-box"
@@ -95,7 +95,7 @@ const SignUp = () => {
             onChange={(e) => setUser({...user, unique_number: e.target.value})}
           />
         </div>
-        <div className="input">
+        <div>
           <label htmlFor="email">Your email</label>
           <input
             className="input-box"
@@ -108,7 +108,7 @@ const SignUp = () => {
             onChange={(e) => setUser({...user, email: e.target.value})}
           />
         </div>
-        <div className="input">
+        <div>
           <label htmlFor="Role">Role</label>
           <select value={user.role}onChange={(e) => setUser({...user, role: e.target.value})} required>
             <option value="">Select role</option>
@@ -117,7 +117,7 @@ const SignUp = () => {
             <option value="L">Lecturer</option>
           </select>
         </div>
-        <div className="input">
+        <div>
           <label htmlFor="Department">Department</label>
           <input
             className="input-box"
@@ -130,7 +130,7 @@ const SignUp = () => {
             onChange={(e) => setUser({...user, dept: e.target.value})}
           />
         </div>
-        <div className="input">
+        <div>
           <label htmlFor="password">Your password</label>
           <input
             className="input-box"
@@ -143,7 +143,7 @@ const SignUp = () => {
             onChange={(e) => setUser({...user, password: e.target.value})}
           />
         </div>
-        <div className="input">
+        <div>
           <label htmlFor="password2">Confirm password</label>
           <input
             className="input-box"

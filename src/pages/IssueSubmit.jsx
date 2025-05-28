@@ -6,7 +6,7 @@ import './IssueSubmit.css'
 const IssueSubmit = () => {
   const [formData, setFormData] = useState({
     category: '',
-    dept: '',
+    department: '',
     description: '',
   });
   const [error,setError] = useState('')
@@ -16,47 +16,54 @@ const IssueSubmit = () => {
     e.preventDefault();
 
     try{
-      // Merge student ID just-in-time, don't store in state
-      const submissionData = {
-        ...formData,
-        student: localStorage.getItem("userId")
-      };
+      const token = localStorage.getItem("authToken")
 
-      const response = await axios.post("http://localhost:8000/api/issues/", submissionData);
-      console.log(response);
+      const response = await axios.post(
+        "https://aits-backend-serve-6cfc52717a28.herokuapp.com/api/issues/", 
+        formData,
+        {
+          headers:{
+            Authorization: `Bearer ${token}`,
+            "Content-Type": 'application/json',
+          }
+        });
+      const {status,data} = response
+      console.log(data);
 
-      if(response.status === 200 || response.status === 201){
-        navigate("/studentdash/:id")
+      if(status === 200 || status === 201){
+        navigate(`/studentdash/${localStorage.getItem("userId")}`);
       }else{
-        setError(response.data)
+        console.log(status)
+        setError(data.message || "Unknown error occurred.")      
       }
-    }catch(e){
-      console.log(e)
-      setError(e)
+    }catch(err){
+      console.log(err)
+      setError("An error occurred while submitting the issue. Please check the console for details.")
     }
   };
 
   return (
-    <div className="container">
+    <>
       <h1>Issue Form</h1>
       <form onSubmit={handleSubmit} className="form">
         {error && <div className="error">{error}</div>}
-        <div className="input-box">
+        <div >
           <label htmlFor="category">Category</label>
           <select name="category" id="category" value={formData.category} onChange={(e)=> setFormData({...formData,category:e.target.value})} required>
             <option value="">Select a category</option>
-            <option value="Missing Marks">Missing Marks</option>
-            <option value="Corrections">Corrections</option>
-            <option value="Appeal">Appeal</option>
+            <option value="MM">Missing Marks</option>
+            <option value="MC">Missing Coursework</option>
+            <option value="WM">Wrong Marks</option>
+            <option value="Ap">Apeal</option>
           </select>
         </div>
-        <div className="input-box">
+        <div >
           <label htmlFor="Department">Department Code</label>
-          <input className="input-box" type="text" id="dept" value={formData.dept} onChange={(e)=>setFormData({...formData,dept:e.target.value})} required 
+          <input  type="number" id="dept" value={formData.department} onChange={(e)=>setFormData({...formData,department: parseInt(e.target.value,10)})} required 
           />
             
         </div>
-        <div className="input-box">
+        <div >
           <label htmlFor="description">Description</label>
           <textarea
             cols="30"
@@ -73,7 +80,7 @@ const IssueSubmit = () => {
           <button type="submit">Submit</button>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

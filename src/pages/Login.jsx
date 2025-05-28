@@ -16,12 +16,13 @@ const Login = () => {
       const { status, data } = response;
 
       if (status === 200) {
-        // Assuming the response data contains userId and token
-        const { access, user: { unique_number, role }, user } = data;
+        const { access, user:{unique_number,role} } = data;
+    
         // Store the token for future requests
         localStorage.setItem('authToken', access);
         localStorage.setItem('userId', unique_number);
-        localStorage.setItem("user",user)
+        localStorage.setItem('role', role);
+        
         // Redirect to the user's dashboard
         if (role === 'A') {
           navigate(`/admindash/${unique_number}`);
