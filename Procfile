@@ -1,4 +1,4 @@
-release: python manage.py migrate --no-input
+release: ./release-tasks.sh
 web: gunicorn aits.wsgi
 
 # Uncomment this `release` process if you are using a database, so that Django's model
