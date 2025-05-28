@@ -53,7 +53,7 @@ class IssueSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Issue
-        fields = ['issueID', 'user', 'department', 'category', 'category_display', 'description', 'status', 'status_display', 'created_at', 'updated_at', 'assigned_to']
+        fields = ['issueID', 'user', 'user_name', 'department', 'department_name', 'category', 'category_display', 'description', 'status', 'status_display', 'created_at', 'updated_at', 'assigned_to']
         read_only_fields = ['issueID', 'created_at', 'updated_at']
     
     def get_user_name(self, obj):
